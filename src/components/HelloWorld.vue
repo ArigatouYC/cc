@@ -6,7 +6,24 @@
             {{ item.id }}---{{ item.anwei }}
             <button @click="deleteItem(item.id)">X</button>
         </div>
-        <div v-for=" in 50">占个位</div>
+
+        <h1>页面滚动距离信息：</h1>
+
+        <h2>横向滚动距离：{{ x }}</h2>
+
+        <h2>纵向滚动距离：{{ y.toFixed() }}</h2>
+
+        <h2>是否正在滚动：{{ isScrolling }}</h2>
+
+        <h2>是否触顶：{{ arrivedState.top }}</h2>
+
+        <h2>是否触底：{{ arrivedState.bottom }}</h2>
+
+        <h2>滚动方向：{{ directions }}</h2>
+
+
+        <div v-for=" in 17">占个位</div>
+
         <img class="f1" v-cym="imgSrc" alt="">
     </div>
 </template>
@@ -17,6 +34,9 @@ import { httpInstance } from "../utils/http";
 import { ref } from "vue";
 import { nanoid } from "nanoid";
 
+import { useScroll } from "@vueuse/core";
+
+const { x, y, isScrolling, arrivedState, directions } = useScroll(window)
 
 let hello: any = ref([])
 
@@ -39,7 +59,7 @@ let deleteItem = function (id: string) {
 </script>
 
 <style scoped>
-.f1{
+.f1 {
     height: 400px;
 }
 </style>
