@@ -33,7 +33,6 @@
 import { httpInstance } from "../utils/http";
 import { ref } from "vue";
 import { nanoid } from "nanoid";
-
 import { useScroll } from "@vueuse/core";
 
 const { x, y, isScrolling, arrivedState, directions } = useScroll(window)
@@ -43,7 +42,7 @@ let hello: any = ref([])
 let imgSrc = 'https://assets-v2.porsche.cn/cn/-/media/Project/PCOM/SharedSite/OneHome/CarRange/911_Carrange.jpg?rev=753a29ebc1cd42ca83273731b5ad62c1&extension=webp&w=1760&q=65'
 
 let test = function () {
-    httpInstance.get('index.php?type=json').then((res) => {
+    httpInstance('https://v.api.aa1.cn/api/api-wenan-anwei/index.php?type=json').then((res) => {
         let helloItem = ref({
             id: nanoid(),
             anwei: res.data.anwei

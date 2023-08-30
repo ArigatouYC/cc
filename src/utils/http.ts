@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export let httpInstance = axios.create({
-    baseURL: 'https://v.api.aa1.cn/api/api-wenan-anwei/',
+    // baseURL: 'https://v.api.aa1.cn/api/api-wenan-anwei/',
     timeout: 5000
 })
 
