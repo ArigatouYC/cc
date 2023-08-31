@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
-import './style.css'
+// import './style.css'
+
+//element深色模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 import App from './App.vue'
 
 import { useIntersectionObserver } from '@vueuse/core'
@@ -23,6 +27,7 @@ app.directive('cym', {
 })
 
 const pinia = createPinia()
+
 app.use(pinia)
 
 //最后在挂载app！！！！
