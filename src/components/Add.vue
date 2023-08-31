@@ -16,7 +16,7 @@ onMounted(() => {
 
 let getAdd = async function () {
     address.value = await getAddByIP()
-    console.log(address);
+    // console.log(address.value);
 }
 </script>
 

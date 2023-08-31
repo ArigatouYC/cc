@@ -5,7 +5,6 @@ import Add from "./components/Add.vue"
 </script>
 
 <template>
-<RouterView/>
 <Students></Students>
 <Add></Add>
 <Hello></Hello>
