@@ -10,26 +10,15 @@
             {{ item.id }}---{{ item.anwei }}
             <button @click="deleteItem(item.id)">X</button>
         </div>
-        <el-button type="success" size="default">hello</el-button>
-
-
+        <el-button type="success" size="default">this is a elbutton</el-button>
         <h1>页面滚动距离信息：</h1>
-
         <h2>横向滚动距离：{{ x }}</h2>
-
         <h2>纵向滚动距离：{{ y.toFixed() }}</h2>
-
         <h2>是否正在滚动：{{ isScrolling }}</h2>
-
         <h2>是否触顶：{{ arrivedState.top }}</h2>
-
         <h2>是否触底：{{ arrivedState.bottom }}</h2>
-
         <h2>滚动方向：{{ directions }}</h2>
-
-
         <div v-for=" in 17">占个位</div>
-
         <img class="f1" v-cym="imgSrc" alt="">
     </div>
 </template>
@@ -40,10 +29,7 @@ import { httpInstance } from "../utils/http";
 import {  onMounted, ref, watch } from "vue";
 import { nanoid } from "nanoid";
 import { useScroll } from "@vueuse/core";
-
 import { Sunny, Moon } from '@element-plus/icons-vue'
-
-
 
 
 const { x, y, isScrolling, arrivedState, directions } = useScroll(window)
@@ -53,7 +39,7 @@ let hello: any = ref([])
 let imgSrc = 'https://assets-v2.porsche.cn/cn/-/media/Project/PCOM/SharedSite/OneHome/CarRange/911_Carrange.jpg?rev=753a29ebc1cd42ca83273731b5ad62c1&extension=webp&w=1760&q=65'
 
 let test = function () {
-    httpInstance('https://v.api.aa1.cn/api/api-wenan-anwei/index.php?type=json').then((res) => {
+    httpInstance('index.php?type=json').then((res) => {
         let helloItem = ref({
             id: nanoid(),
             anwei: res.data.anwei
