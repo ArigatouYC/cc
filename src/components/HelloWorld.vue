@@ -6,11 +6,11 @@
     <div>
         <button @click="test">clice me</button>
         <hr>
-        <div v-for="item in hello" key="item.id">
+        <div v-for="item in hello" key="item.id" class="animate__animated animate__fadeInDown">
             {{ item.id }}---{{ item.anwei }}
             <button @click="deleteItem(item.id)">X</button>
         </div>
-        <el-button type="success" size="default">this is a elbutton</el-button>
+
         <h1>页面滚动距离信息：</h1>
         <h2>横向滚动距离：{{ x }}</h2>
         <h2>纵向滚动距离：{{ y.toFixed() }}</h2>
@@ -18,18 +18,26 @@
         <h2>是否触顶：{{ arrivedState.top }}</h2>
         <h2>是否触底：{{ arrivedState.bottom }}</h2>
         <h2>滚动方向：{{ directions }}</h2>
-        <div v-for=" in 17">占个位</div>
-        <img class="f1" v-cym="imgSrc" alt="">
+
+        <el-button type="success" size="default" @click="switchDisplay">显示/隐藏</el-button>
+            <div v-show="show" class="animate__animated animate__fadeInDown">
+            <div v-for=" in 17">占个位</div>
+        </div>
+        <div>
+            <img class="f1" v-cym="imgSrc" alt="">
+        </div>
+
     </div>
 </template>
 
 <script setup lang="ts">
 
 import { httpInstance } from "../utils/http";
-import {  onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { nanoid } from "nanoid";
 import { useScroll } from "@vueuse/core";
 import { Sunny, Moon } from '@element-plus/icons-vue'
+import 'animate.css'
 
 
 const { x, y, isScrolling, arrivedState, directions } = useScroll(window)
@@ -48,8 +56,34 @@ let test = function () {
     })
 }
 
+let show = ref(true)
+let switchDisplay = function () {
+    show.value = !show.value
+}
+
 let deleteItem = function (id: string) {
-    console.log('执行删除操作', id);
+  ElMessageBox.confirm(
+    'Are you sure delete?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+      draggable: true,
+    },
+  )
+    .then(() => {
+      ElMessage({
+        type: 'success',
+        message: `${id}----Delete completed`,
+      })
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: `${id}----Delete canceled`,
+      })
+    })
 }
 
 //深色模式动态切换
@@ -84,5 +118,9 @@ onMounted(() => {
 <style scoped>
 .f1 {
     height: 400px;
+}
+
+.animate__animated.animate__fadeInDown {
+    --animate-duration: .6s;
 }
 </style>
