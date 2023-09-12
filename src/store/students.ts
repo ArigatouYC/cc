@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from "vue";
-
 // 你可以对 `defineStore()` 的返回值进行任意命名，但最好使用 store 的名字，
 //同时以 `use` 开头且以 `Store` 结尾。
 //(比如 `useUserStore`，`useCartStore`，`useProductStore`)
@@ -20,7 +19,6 @@ export let useStudentsStore = defineStore('students', () => {
             name: 'yyy'
         }
     ])
-
     let addStudent = function (id: string, name: string) {
         studentsList.value.push(
             {
@@ -28,10 +26,12 @@ export let useStudentsStore = defineStore('students', () => {
                 name
             })
     }
-
     return {
         studentsList,
         addStudent
     }
-})
+},
+    {
+        persist: true,
+    })
 

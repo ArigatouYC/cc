@@ -9,6 +9,8 @@ import App from './App.vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import { createPinia } from 'pinia'
 
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
 let app = createApp(App)
 
 //懒加载指令
@@ -29,6 +31,7 @@ app.directive('cym', {
 const pinia = createPinia()
 
 app.use(pinia)
+pinia.use(piniaPluginPersistedstate)
 
 //最后在挂载app！！！！
 app.mount('#app')
